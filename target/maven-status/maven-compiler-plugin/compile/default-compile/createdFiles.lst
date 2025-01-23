@@ -1,0 +1,5 @@
+com/example/inboundadapter/ActiveMQConfig.class
+com/example/inboundadapter/Camel2CP.class
+com/example/inboundadapter/InboundAdapterApplication.class
+com/example/inboundadapter/Camel2CP$1.class
+com/example/inboundadapter/TransactionManagerConfig.class
