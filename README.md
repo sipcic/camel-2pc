@@ -2,13 +2,13 @@
 
 ## Abstract
 
-In modern distributed systems, ensuring data consistency across multiple services and technologies is a critical challenge. Two-Phase Commit (2PC) is a widely adopted protocol to guarantee atomicity and consistency in transactions spanning different systems. This paper introduces the InboundAdapter project, a Spring Boot application leveraging Apache Camel to implement transactional messaging with ActiveMQ. The core component, Camel2CP, demonstrates a straightforward yet powerful approach to 2PC implementation, enabling seamless integration with various systems like Kafka and RDS. Our approach emphasizes simplicity, modularity, and extensibility, making it ideal for enterprise-grade applications requiring reliable transactional messaging. The benefits include reduced complexity in managing distributed transactions, enhanced system resilience, and adaptability to evolving business needs. The full code is available on [GitHub](#) for further exploration.
+In modern distributed systems, ensuring data consistency across multiple services and technologies is a critical challenge. Two-Phase Commit (2PC) is a widely adopted protocol to guarantee atomicity and consistency in transactions spanning different systems. This paper introduces the InboundAdapter project, a Spring Boot application leveraging Apache Camel to implement transactional messaging with ActiveMQ. The core component, Camel2PC, demonstrates a straightforward yet powerful approach to 2PC implementation, enabling seamless integration with various systems like Kafka and RDS. Our approach emphasizes simplicity, modularity, and extensibility, making it ideal for enterprise-grade applications requiring reliable transactional messaging. The benefits include reduced complexity in managing distributed transactions, enhanced system resilience, and adaptability to evolving business needs. The full code is available on [GitHub](#) for further exploration.
 
 ## Introduction
 
 The **InboundAdapter** project is a Spring Boot-based application designed to demonstrate transactional messaging using Apache Camel. It showcases how Camel routes can be configured to support transactional behavior, specifically two-phase commit (2PC), for reliable and consistent messaging.
 
-The centerpiece of this project is the **Camel2CP** class, which provides a transactional route for publishing messages to two separate ActiveMQ queues. This paper explains the project architecture, the implementation of 2PC in Camel2CP, and outlines how the design can be extended to support additional technologies like Kafka and relational databases (RDS).
+The centerpiece of this project is the **Camel2PC** class, which provides a transactional route for publishing messages to two separate ActiveMQ queues. This paper explains the project architecture, the implementation of 2PC in Camel2PC, and outlines how the design can be extended to support additional technologies like Kafka and relational databases (RDS).
 
 The full code is available on [GitHub](#) for reference and further exploration.
 
@@ -25,7 +25,7 @@ The full code is available on [GitHub](#) for reference and further exploration.
 2. **ActiveMQ Broker**:
    - Serves as the message broker for the transactional queues (`msgQueue` and `idQueue`).
 
-3. **Camel2CP Class**:
+3. **Camel2PC Class**:
    - Defines the transactional route.
    - Manages message publishing to multiple queues within a single transaction.
 
@@ -36,18 +36,18 @@ The full code is available on [GitHub](#) for reference and further exploration.
 
 ## Code Explanation
 
-### Camel2CP Class
+### Camel2PC Class
 
-The `Camel2CP` class defines a transactional route using Apache Camel. Below is the key implementation:
+The `Camel2PC` class defines a transactional route using Apache Camel. Below is the key implementation:
 
 ```java
 @Component
-public class Camel2CP {
+public class Camel2PC {
 
     private final CamelContext camelContext;
     private final ProducerTemplate producerTemplate;
 
-    public Camel2CP(CamelContext camelContext) throws Exception {
+    public Camel2PC(CamelContext camelContext) throws Exception {
         this.camelContext = camelContext;
         this.producerTemplate = camelContext.createProducerTemplate();
 
@@ -84,7 +84,7 @@ public class Camel2CP {
 }
 ```
 
-### Key Features of `Camel2CP`
+### Key Features of `Camel2PC`
 
 1. **Transactional Behavior**:
    - The `.transacted()` DSL ensures that all steps within the route are part of a single transaction.
@@ -125,9 +125,9 @@ public class TransactionManagerConfig {
 
 ---
 
-## Extending Camel2CP for Additional Technologies
+## Extending Camel2PC for Additional Technologies
 
-The `Camel2CP` class can be easily extended to support 2PC across other technologies like **Kafka** and **RDS**. Below is an outline of the required changes:
+The `Camel2PC` class can be easily extended to support 2PC across other technologies like **Kafka** and **RDS**. Below is an outline of the required changes:
 
 ### 1. **Add Kafka Integration**
 
@@ -195,7 +195,7 @@ The `Camel2CP` class can be easily extended to support 2PC across other technolo
 
 ## Conclusion
 
-The **InboundAdapter** project demonstrates how Apache Camel can be used to implement transactional messaging with 2PC. The modular design of the `Camel2CP` class allows for easy integration with other transactional technologies like Kafka and RDS, enabling developers to build robust, distributed systems.
+The **InboundAdapter** project demonstrates how Apache Camel can be used to implement transactional messaging with 2PC. The modular design of the `Camel2PC` class allows for easy integration with other transactional technologies like Kafka and RDS, enabling developers to build robust, distributed systems.
 
 To explore the full code and examples, visit the [GitHub Repository](#).
 

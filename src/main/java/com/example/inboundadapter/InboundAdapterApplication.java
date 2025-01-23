@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InboundAdapterApplication {
 
     @Autowired
-    private Camel2CP camel2CP;
+    private Camel2PC camel2CP;
 
     public static void main(String[] args) {
         // Start the Spring application context
@@ -16,7 +16,7 @@ public class InboundAdapterApplication {
 
         try {
             // Retrieve the Camel2CP bean
-            Camel2CP camel2CP = context.getBean(Camel2CP.class);
+            Camel2PC camel2CP = context.getBean(Camel2PC.class);
 
             // Process the message
             camel2CP.processMessage("Hello, Camel!", 42);
